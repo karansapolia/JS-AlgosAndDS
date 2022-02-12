@@ -6,15 +6,18 @@ const recursiveFactorial = (num) => {
   }
 };
 
-const memoize = (fn) => (num) => {
+const memoize = (fn) => {
   cache = {};
-  if (cache[num]) {
-    return cache[num];
-  } else {
-    const result = fn(num);
-    cache[num] = result;
-    return result;
-  }
+  return (num) => {
+    if (cache[num]) {
+      return cache[num];
+    } else {
+      const result = fn(num);
+      cache[num] = result;
+      console.log(cache);
+      return result;
+    }
+  };
 };
 
 const recursiveFactorialMemo = memoize((num) => {
